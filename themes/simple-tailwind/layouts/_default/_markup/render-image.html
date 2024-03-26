@@ -1,0 +1,18 @@
+{{- $src := .Page.Resources.GetMatch (.Destination) -}}
+{{- $alt := .Text -}}
+{{- $caption := .Title -}}
+{{- $imgClass := "max-h-96 animate-fade" -}}
+{{  if and $src (strings.HasPrefix $src.MediaType.Type "image") }}
+    {{- $hint := "photo" -}}
+    {{- $divClass := print "w-fit mx-auto"}}
+    
+    <div class="{{ $divClass }}">
+        <picture>
+            <img class="{{ $imgClass }}" src="{{ $src.RelPermalink }}" alt="{{ $alt }}" title="{{ $caption }}" loading="lazy" />
+        </picture>
+        {{- with $caption -}}<p class="imghCaption">{{ $caption | $.Page.RenderString }}</p>{{- end }}
+    </div>
+{{ else }}
+    <!-- Fallback for external images or images not found as page resources -->
+    <img class="{{ $imgClass }}" src="{{ .Destination | safeURL }}" alt="{{ $alt }}" title="{{ $caption }}" loading="lazy" />
+{{ end }}

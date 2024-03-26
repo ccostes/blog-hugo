@@ -1,0 +1,15 @@
+baseURL = 'https://ccostes.com/'
+languageCode = 'en-us'
+title = 'Chris Costes'
+theme = 'simple-tailwind'
+
+[params]
+showSummary = 'true'
+
+[markup.goldmark.renderer]
+unsafe= true
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderHooks]
+      [markup.goldmark.renderHooks.image]
+        enableDefault = true

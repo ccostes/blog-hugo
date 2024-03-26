@@ -1,0 +1,46 @@
+{{- $respSizes := slice "320" "640" "960" "1280" "1600" "1920" -}}
+{{- $src := .Page.Resources.GetMatch (.Destination) -}}
+{{- $alt := .Text -}}
+{{- $caption := .Title -}}
+{{- $hint := "photo" -}}
+{{- $filter := "box" -}}
+{{- $imgClass := "max-h-96 animate-fade" -}}
+{{  if and $src (strings.HasPrefix $src.MediaType.Type "image") }}
+    {{- $isRaster := not (or (eq $src.MediaType.SubType "svg+xml") (strings.HasSuffix .Destination ".svg") (strings.HasSuffix .Destination ".SVG")) -}}
+    {{- $imgBd5 := md5 $src.Content -}}
+    {{- $divClass := print "w-fit mx-auto imgB-" $imgBd5 -}}
+    {{- $dataSzes := "(min-width: 1024px) 100vw, 50vw" -}}
+
+    <div class="{{ $divClass }}">
+        <picture>
+            {{ if $isRaster }}
+                {{- $originalWidth := $src.Width -}}
+                {{- $originalHeight := $src.Height -}}
+                {{- $maxWidth := printf "max-width: %dpx;" $originalWidth -}}
+                {{- $maxHeight := printf "max-height: %dpx;" $originalHeight -}}
+                {{- $style := printf "max-width: %dpx; max-height: %dpx;" $originalWidth $originalHeight | safeCSS -}}
+                {{- $actualImg := $src.Resize (print "640x jpg " $filter) -}}
+                <source type="image/webp" srcset="
+                {{- range $respSizes -}}
+                    {{- if ge $src.Width . -}}
+                        {{- ($src.Resize (print . "x webp " $hint " " $filter) ).RelPermalink }} {{ . }}w,
+                    {{- end -}}
+                {{- end -}}" sizes="{{ $dataSzes }}" />
+                <source type="image/jpeg" srcset="
+                {{- range $respSizes -}}
+                    {{- if ge $src.Width . -}}
+                        {{- ($src.Resize (print . "x jpg " $filter) ).RelPermalink }} {{ . }}w,
+                    {{- end -}}
+                {{- end -}}" sizes="{{ $dataSzes }}" />
+                <img class="{{ $imgClass }}" style="{{$style}}" src="{{ $actualImg.RelPermalink }}" alt="{{ $alt }}" title="#{{ $style }}" loading="lazy" />
+            {{ else }}
+                <!-- Fallback for SVG and other non-raster images -->
+                <img class="{{ $imgClass }}" style="width: fit-content; height: fit-content;" src="{{ $src.RelPermalink }}" alt="{{ $alt }}" title="{{ $caption }}" loading="lazy" />
+            {{ end }}
+        </picture>
+        {{- with $caption -}}<p class="imghCaption">{{ $caption | $.Page.RenderString }}</p>{{- end }}
+    </div>
+{{ else }}
+    <!-- Fallback for external images or images not found as page resources -->
+    <img class="{{ $imgClass }}" src="{{ .Destination | safeURL }}" alt="{{ $alt }}" title="{{ $caption }}" loading="lazy" />
+{{ end }}
