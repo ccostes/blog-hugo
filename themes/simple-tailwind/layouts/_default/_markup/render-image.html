@@ -5,10 +5,21 @@
 {{  if and $src (strings.HasPrefix $src.MediaType.Type "image") }}
     {{- $hint := "photo" -}}
     {{- $divClass := print "w-fit mx-auto"}}
+    {{- $parts := split $src.Name "." -}}
+    {{- $base := index $parts 0 -}}
+    {{- $ext := index $parts 1 -}}
+    {{- $darkVariantName := print $base "_dark." $ext -}}
+    {{- $darkVariant := .Page.Resources.GetMatch $darkVariantName -}}
     
     <div class="{{ $divClass }}">
         <picture>
+            <!-- Include the dark mode source if available -->
+            {{ if $darkVariant }}
+            <img class="{{ $imgClass }} hidden dark:block" src="{{ $darkVariant.RelPermalink }}" alt="{{ $alt }}" title="{{ $caption }}" loading="lazy" />
+            <img class="{{ $imgClass }} dark:hidden" src="{{ $src.RelPermalink }}" alt="{{ $alt }}" title="{{ $caption }}" loading="lazy" />
+            {{ else }}
             <img class="{{ $imgClass }}" src="{{ $src.RelPermalink }}" alt="{{ $alt }}" title="{{ $caption }}" loading="lazy" />
+            {{ end }}
         </picture>
         {{- with $caption -}}<p class="imghCaption">{{ $caption | $.Page.RenderString }}</p>{{- end }}
     </div>

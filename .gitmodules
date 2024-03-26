@@ -4,3 +4,6 @@
 [submodule "themes/tufte"]
 	path = themes/tufte
 	url = https://github.com/loikein/hugo-tufte.git
+[submodule "content/posts/ml"]
+	path = content/posts/ml
+	url = git@github.com:ccostes/ml.git
