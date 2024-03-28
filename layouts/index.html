@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <main aria-role="main" class="justify-self-center mx-auto max-w-[58rem] px-8 mb-16 sm:px-4 md:px-0">
+  <main aria-role="main" class="justify-self-center mx-auto max-w-[58rem] px-0 mb-16 sm:px-4 md:px-0">
     <header class="homepage-header">
       <h1>{{ .Title }}</h1>
       {{ with .Params.subtitle }}
@@ -10,8 +10,8 @@
       <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
       {{ .Content }}
     </div>
-    <div>
-      <h2>Recent Posts</h2>
+    <h2>Recent Posts</h2>
+    <div class="px-4">
       {{ range first 3 .Site.RegularPages }}
         <h3 class="content-title">
           {{ if .IsNode }}
@@ -28,6 +28,7 @@
           <p>{{ .Summary }}</p>
           {{ end }}
           {{ end }}
+          <a href="{{ .Permalink }}"><p class="px-4 pb-4 font-bold">Read More</p></a>
           <hr />
       {{ end }}
       <p><a href="/posts">All Posts</a></p>

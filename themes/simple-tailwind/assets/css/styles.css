@@ -82,3 +82,17 @@ pre {
 p {
     margin-top: 1rem;
 }
+.aspect-ratio-container {
+    position: relative;
+    width: 100%; /* Adapt to the width of the parent container */
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0; /* Collapse the container's height */
+}
+
+.aspect-ratio-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
