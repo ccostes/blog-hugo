@@ -1,7 +1,12 @@
 {{ define "main" }}
 <article
     class="justify-self-center mx-auto max-w-[58rem] px-0 sm:px-8 mb-16">
-    <h1>{{ .Title }}</h1>
+    {{ if .Params.maintitle }}
+    <h1 class="text-center font-normal mb-0">{{ .Params.maintitle }}</h1>
+    <h2 class="text-center mt-0 text-lg italic font-normal">{{ .Params.subtitle }}</h2>
+    {{ else }}
+    <h1 class="text-center font-normal">{{ .Title }}</h1>
+    {{ end }}
     {{ .Content }}
 </article>
 {{ end }}

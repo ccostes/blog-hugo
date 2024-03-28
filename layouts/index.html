@@ -19,17 +19,16 @@
           {{ else }}
           <a href="{{ .RelPermalink }}">{{ .Title }}{{ if .Draft }}&nbsp;:: Draft{{end}}</a>
           {{ end }}
-          </h2>
-        
-          {{ if .Description }}
-          <p>{{ .Description }}</p>
-          {{ else }}
-          {{ if .Site.Params.showSummary }}
-          <p>{{ .Summary }}</p>
-          {{ end }}
-          {{ end }}
-          <a href="{{ .Permalink }}"><p class="px-4 pb-4 font-bold">Read More</p></a>
-          <hr />
+        </h3>
+        {{ if .Description }}
+        <p>{{ .Description }}</p>
+        {{ else }}
+        {{ if .Site.Params.showSummary }}
+        <p>{{ .Summary }}</p>
+        {{ end }}
+        {{ end }}
+        <a href="{{ .Permalink }}"><p class="px-4 pb-4 font-bold">Read More</p></a>
+        <hr />
       {{ end }}
       <p><a href="/posts">All Posts</a></p>
     </div>
