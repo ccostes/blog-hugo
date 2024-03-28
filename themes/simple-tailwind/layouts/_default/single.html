@@ -1,12 +1,19 @@
 {{ define "main" }}
 <article
     class="justify-self-center mx-auto max-w-[58rem] px-0 sm:px-8 mb-16">
-    {{ if .Params.maintitle }}
-    <h1 class="text-center font-normal mb-0">{{ .Params.maintitle }}</h1>
-    <h2 class="text-center mt-0 text-lg italic font-normal">{{ .Params.subtitle }}</h2>
-    {{ else }}
-    <h1 class="text-center font-normal">{{ .Title }}</h1>
-    {{ end }}
+    <div class="mb-4">
+        {{ if .Params.maintitle }}
+        <h1 class="text-center font-normal my-0">{{ .Params.maintitle }}</h1>
+        <h2 class="text-center my-0 text-lg italic font-normal">{{ .Params.subtitle }}</h2>
+        {{ else }}
+        <h1 class="text-center my-0 font-normal">{{ .Title }}</h1>
+        {{ end }}
+        {{ if .Params.repo }}
+        <p class="text-center my-0">
+            <a href="{{ .Params.repo }}" class="text-sm underline">Source Code</a>
+        </p>
+        {{ end }}
+    </div>
     {{ .Content }}
 </article>
 {{ end }}
