@@ -4,7 +4,11 @@ title = 'Chris Costes'
 theme = 'simple-tailwind'
 
 [params]
+images = ['sfo.jpg']
+title = 'Chris Costes'
+description = "Chris' Blog"
 showSummary = 'true'
+
 
 [markup.goldmark.renderer]
 unsafe= true
