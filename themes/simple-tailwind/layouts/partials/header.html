@@ -1,4 +1,4 @@
-<header class="font-sans mx-auto w-screen max-w-screen-2xl px-6 sm:px-7 xl:px-8 2xl:px-10 pt-6">
+<header class="mx-auto w-screen max-w-screen-2xl px-6 sm:px-7 xl:px-8 2xl:px-10 pt-6">
     {{/* CSS functionality for menu toggle */}}
     <style type="text/css">
         input#nav-toggle:checked~label#show-button {
@@ -14,9 +14,9 @@
         }
     </style>
 
-    <nav class="font-sans flex items-start justify-between flex-wrap sm:mx-8">
+    <nav class="flex items-start justify-between flex-wrap sm:mx-8">
         <div>
-            <a href="{{ .Site.Home.Permalink }}" class="font-sans text-4xl flex items-center text-slate-800 dark:text-slate-200">
+            <a href="{{ .Site.Home.Permalink }}" class="text-4xl flex items-center no-underline hover:no-underline">
                 {{ .Site.Title }}
             </a>
         </div>
@@ -37,7 +37,7 @@
                 </svg>
             </label> -->
 
-            <ul id="nav-menu" class="text-xl flex flex-row gap-x-[0.5rem] sm:gap-x-0 items-center w-auto mt-2 sm:mt-0 sm:space-x-2">
+            <ul id="nav-menu" class="list-none text-xl flex flex-row gap-x-[0.5rem] sm:gap-x-0 items-center w-auto mt-2 sm:mt-0 sm:space-x-2">
                 <li>
                     <a class="hover:text-[#6cbdf2]" href="/posts">Posts</a>
                 </li>

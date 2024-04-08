@@ -13,6 +13,9 @@
             <a href="{{ .Params.repo }}" class="text-sm underline">Source Code</a>
         </p>
         {{ end }}
+        {{ with .Params.image }}
+          <div class="max-w-lg mx-auto"><img src="{{ . }}" /></div>
+        {{ end }}
     </div>
     {{ .Content }}
 </article>
