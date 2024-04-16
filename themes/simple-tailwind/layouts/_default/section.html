@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article
+    class="justify-self-center mx-auto max-w-xl px-8 mb-16">
+    {{ range .Pages }}
+        <h3 class="content-title text-center">
+            {{ if .IsNode }}
+                <a href="{{ .Permalink }}">{{ .Title}}</a>
+            {{ else }}
+                <a href="{{ .RelPermalink }}">{{ .Title }}{{ if .Draft }}&nbsp;:: Draft{{end}}</a>
+            {{ end }}
+        </h3>
+        {{ if .Params.image }}
+            <div class="max-w-lg mx-auto">
+            <img src="{{ .Permalink }}/{{ .Params.image }}" />
+            </div>
+        {{ end }}
+        {{ if .Description }}
+            <p>{{ .Description }}</p>
+        {{ else }}
+            {{ if .Site.Params.showSummary }}
+            <p>{{ .Summary }}</p>
+        {{ end }}
+        <a href="{{ .Permalink }}">Read More</a>
+        <hr />
+    {{ end }}
+    {{ end }}
+</article>
+{{ end }}

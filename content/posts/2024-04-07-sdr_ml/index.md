@@ -20,7 +20,7 @@ Spoiler alert: it is possible! Not only that, the network can reduce noise and e
 Pretty impressive, right? Subjectively I think the model output is noticeably clearer, and this is backed up by an [objective measure](https://github.com/mpariente/pystoi) of speech intelligibility, showing the model consistently outperforming as noise increases (left-to-right on the chart).
 ![Speech Intelligibility](intelligibility.png)
 
-The context for this project was that I had been studying neural nets, especially Andrej Karpathy's excellent [YouTube series](https://www.youtube.com/watch?v=VMj-3S1tku0&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&pp=iAQB), and wanted to try applying that knowledge to a "real" problem. This is a sort of after-action report on the main challenges and learnings. You can find the code for the project on [GitHub](https://github.com/ccostes/ml).
+The context for this project was that I had been studying neural nets, especially Andrej Karpathy's excellent [YouTube series](https://www.youtube.com/watch?v=VMj-3S1tku0&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&pp=iAQB), and wanted to try applying that knowledge to a "real" problem. This is a sort of after-action report on the main challenges and learnings. You can find the code for the project on [GitHub](https://github.com/ccostes/ml/tree/main/am_transformer).
 
 While not strictly necessary, a basic understanding of software-defined radio (SDR) and amplitude modulation would help to follow along, which I cover in my previous article [AM Demodulation Illustrated](/posts/ml/am_explainer) with visualizations and code.
 
